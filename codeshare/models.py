@@ -1,7 +1,8 @@
 from django.db import models
-from pygments import lexers
+from pygments import formatters, highlight, lexers
 from tagging.fields import TagField
-
+from markdown import markdown
+import datetime
 # Create your models here.
 
 class language(models.Model):
@@ -42,4 +43,18 @@ class snippet(model.Model):
 	def __unicode__(self):
 		return self.title
 
+	def save(self, force_insert=False,force_update=False):
+		if not self.id:
+			self.pub_date=deatetime.datetime.now()
+		self.update_date=datetime.datetime.now()
+		self.description_html =markdown(self.description)
+		self.highlighted_code = self.highlight()
+		super(Snippet, self). save(force_insert, force_update)
+	def get_absolute_url(self):
+		return('snippet_detail',(), {'object_id',self.id})
+	get_absolute_url= models.permalink(get_absolute_url)
 	
+
+	def highlight(self):
+		return highlight(self.code, self.language.get_lexer(),formatters.HtmlFormatter(linenos=True))
+		#linenon = True ->show line numbers
