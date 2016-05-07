@@ -1,5 +1,5 @@
 from django.apps import AppConfig
 
 
-class CodeshareConfig(AppConfig):
-    name = 'codeshare'
+class CshareConfig(AppConfig):
+    name = 'cshare'
