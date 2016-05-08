@@ -35,6 +35,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'tagging',
+    'codeshare',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -48,7 +50,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.security.SecurityMiddleware',
 )
 
-ROOT_URLCONF = 'codeshare.urls'
+ROOT_URLCONF = 'mscodeshare.urls'
 
 TEMPLATES = (
     {
@@ -67,7 +69,7 @@ TEMPLATES = (
     },
 )
 
-WSGI_APPLICATION = 'codeshare.wsgi.application'
+WSGI_APPLICATION = 'mscodeshare.wsgi.application'
 
 
 # Database
@@ -75,8 +77,12 @@ WSGI_APPLICATION = 'codeshare.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'codeshare',
+        'USER': 'root',
+        'PASSWORD': 'master12!',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 
